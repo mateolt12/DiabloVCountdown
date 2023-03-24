@@ -2,24 +2,21 @@
 <html>
    <head>
       <meta charset="UTF-8">
-      <title>Título de la página</title>
-      <!-- Incluimos los archivos de Bootstrap -->
+      <title>Countdown to Diablo 5</title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
       <style>
          body {
-         background-color: #fff; /* Color de fondo en modo diurno */
-         color: #333; /* Color de texto en modo diurno */
-         transition: all .5s; /* Transición suave entre modos */
+         background-color: #fff;
+         color: #333; 
+         transition: all .5s;
          }
-         /* Cambios para el modo nocturno */
          body.dark-mode {
-         background-color: #333; /* Color de fondo en modo nocturno */
-         color: #fff; /* Color de texto en modo nocturno */
+         background-color: #333;
+         color: #fff;
          }
-		 
 		 h1 {
 			font-size: 72px;
 		}
@@ -47,7 +44,6 @@
          <h2><p class="text-center" id="p-salida">Calculando tiempo...</p></h2>
       </div>
       <script>
-         // Cambiar el modo según el estado del interruptor
          const darkModeSwitch = document.querySelector('#dark-mode-switch');
          darkModeSwitch.addEventListener('change', () => {
          	document.body.classList.toggle('dark-mode');
