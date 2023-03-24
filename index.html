@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title>Título de la página</title>
+      <!-- Incluimos los archivos de Bootstrap -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <style>
+         body {
+         background-color: #fff; /* Color de fondo en modo diurno */
+         color: #333; /* Color de texto en modo diurno */
+         transition: all .5s; /* Transición suave entre modos */
+         }
+         /* Cambios para el modo nocturno */
+         body.dark-mode {
+         background-color: #333; /* Color de fondo en modo nocturno */
+         color: #fff; /* Color de texto en modo nocturno */
+         }
+		 
+		 h1 {
+			font-size: 72px;
+		}
+      </style>
+   </head>
+   <body>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+         <a class="navbar-brand" href="#">Diablo V Countdown</a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+               <li class="nav-item">
+                  <div class="form-check form-switch">
+                     <input class="form-check-input" type="checkbox" id="dark-mode-switch">
+                     <label class="form-check-label" for="dark-mode-switch">Modo oscuro</label>
+                  </div>
+               </li>
+            </ul>
+         </div>
+      </nav>
+      <div class="container my-5">
+         <h1 class="text-center">Diablo V salida oficial en...</h1>
+         <h2><p class="text-center" id="p-salida">Calculando tiempo...</p></h2>
+      </div>
+      <script>
+         // Cambiar el modo según el estado del interruptor
+         const darkModeSwitch = document.querySelector('#dark-mode-switch');
+         darkModeSwitch.addEventListener('change', () => {
+         	document.body.classList.toggle('dark-mode');
+         });
+		 
+const _salida = new Date("2034-06-06T17:00:00").getTime();
+
+function calculate(_rightNow) {
+return _salida - _rightNow;
+}
+
+function formatter(milisegundos) {
+  const unSegundo = 1000;
+  const unMinuto = unSegundo * 60;
+  const unaHora = unMinuto * 60;
+  const unDia = unaHora * 24;
+
+  const dias = Math.floor(milisegundos / unDia);
+  milisegundos -= dias * unDia;
+
+  const horas = Math.floor(milisegundos / unaHora);
+  milisegundos -= horas * unaHora;
+
+  const minutos = Math.floor(milisegundos / unMinuto);
+  milisegundos -= minutos * unMinuto;
+
+  const segundos = Math.floor(milisegundos / unSegundo);
+  milisegundos -= segundos * unSegundo;
+
+  let resultado = "";
+  if (dias >= 0) {
+    resultado += dias + " día" + (dias === 1 ? "" : "s")+" ";
+  }
+  if (horas >= 0) {
+    resultado += horas + " hora" + (horas === 1 ? "" : "s")+" ";
+  }
+  if (minutos >= 0) {
+    resultado += minutos + " minuto" + (minutos === 1 ? "" : "s")+" ";
+  }
+
+  if (segundos >= 0) {
+    resultado += segundos + " segundo" + (segundos === 1 ? "" : "s");
+  }
+ 
+  return resultado;
+}
+
+setInterval(() => {
+  let miliSegundos = calculate(new Date().getTime());
+  let retorno = formatter(miliSegundos);
+  document.getElementById("p-salida").innerText = retorno
+  }, 1000);
+
+      </script>
+   </body>
+</html>
